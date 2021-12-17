@@ -2,10 +2,13 @@ package io.github.kwisatzx.mvccompanyrestconsumer.controllers;
 
 import io.github.kwisatzx.mvccompanyrestconsumer.RestClient;
 import io.github.kwisatzx.mvccompanyrestconsumer.model.Employee;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Controller
 public class EmployeesController {
@@ -18,7 +21,8 @@ public class EmployeesController {
 
     @GetMapping("/employees")
     public String employeeList(Model model) {
-        model.addAttribute("employees", restClient.getList(Employee.class, "/employees"));
+        model.addAttribute("employeeList", restClient.getList("/employees",
+                                                       new ParameterizedTypeReference<List<Employee>>() {}));
         return "employees";
     }
 

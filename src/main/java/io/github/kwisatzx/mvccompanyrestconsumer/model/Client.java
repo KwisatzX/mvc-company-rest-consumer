@@ -10,4 +10,9 @@ public class Client {
     private Long id;
     private String name;
     private Branch branch;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

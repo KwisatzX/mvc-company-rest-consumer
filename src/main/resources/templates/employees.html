@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="emp : ${employees}">
+    <tr th:each="emp : ${employeeList}">
         <td>
             <a th:href="@{/employees/__${emp.id}__}" th:text="${emp.firstName + ' ' + emp.lastName}"></a>
         </td>

@@ -18,10 +18,10 @@ public class RestClient {
         restTemplate = new RestTemplateBuilder().build();
     }
 
-    public <T> List<T> getList(Class<T> elementClass, String listUrl) {
+    public <T> List<T> getList(String listUrl, ParameterizedTypeReference<List<T>> type) {
         ResponseEntity<List<T>> response = restTemplate.exchange(URL_ROOT + listUrl,
                                                                         HttpMethod.GET, null,
-                                                                        new ParameterizedTypeReference<>() {});
+                                                                        type);
         return response.getBody();
     }
 
