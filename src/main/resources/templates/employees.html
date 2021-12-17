@@ -6,8 +6,29 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: body"></div>
-
-
-
+<table>
+    <thead>
+    <tr>
+        <th style="width: 170px;">Full name</th>
+        <th style="width: 150px;">Birth date</th>
+        <th style="width: 50px;">Sex</th>
+        <th style="width: 130px;">Salary</th>
+        <th style="width: 130px;">Superior</th>
+        <th style="width: 100px;">Branch</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="emp : ${employees}">
+        <td>
+            <a th:href="@{/employees/__${emp.id}__}" th:text="${emp.firstName + ' ' + emp.lastName}"></a>
+        </td>
+        <td th:text="${emp.birthDay}"></td>
+        <td th:text="${emp.sex}"></td>
+        <td th:text="${emp.salary}"></td>
+        <td th:text="${emp.superior}"></td>
+        <td th:text="${emp.branch}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
