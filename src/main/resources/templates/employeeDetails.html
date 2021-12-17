@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Company-MVC Rest Controller</title>
+</head>
+<body>
+<div th:replace="navbar :: body"></div>
+
+    <h2>Employee information:</h2>
+    <table th:object="${emp}">
+        <tr>
+            <th>Full name:</th>
+            <td><b th:text="${emp.firstName + ' ' + emp.lastName}"></b></td>
+        </tr>
+        <tr>
+            <th>Birth date:</th>
+            <td th:text="*{birthDay}"></td>
+        </tr>
+        <tr>
+            <th>Sex:</th>
+            <td th:text="*{sex}"></td>
+        </tr>
+        <tr>
+            <th>Salary:</th>
+            <td th:text="*{salary}"></td>
+        </tr>
+        <tr>
+            <th>Superior:</th>
+            <td th:text="*{superior}"></td>
+        </tr>
+        <tr>
+            <th>Branch:</th>
+            <td th:text="*{branch}"></td>
+        </tr>
+    </table>
+<br/>
+<div>
+    <form th:action="@{/employees/{id}/edit(id=${emp.id})}" method="get">
+        <button type="submit">Edit Employee</button>
+    </form>
+    <!---
+        <form th:action="${@employeesController.deleteEmployee(emp.id)}">
+            <button type="submit">Delete Employee</button>
+        </form>
+        --->
+    </div>
+    </body>
+    </html>

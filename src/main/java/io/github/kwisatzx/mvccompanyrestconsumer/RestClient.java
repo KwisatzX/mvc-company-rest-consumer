@@ -25,4 +25,12 @@ public class RestClient {
                                                                         new ParameterizedTypeReference<>() {});
         return response.getBody();
     }
+
+    public Employee getEmployee(Long empId) {
+        return restTemplate.getForObject(URL_ROOT + "/employees/" + empId, Employee.class);
+    }
+
+    public void deleteEmployee(Long empId) {
+        restTemplate.exchange(URL_ROOT + "/employees/" + empId, HttpMethod.DELETE, null, Object.class);
+    }
 }
