@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 public class RestClient {
-    private final static String URL_ROOT = "https://localhost:8080/api";
+    private final static String URL_ROOT = "http://localhost:8080/api";
     private final RestTemplate restTemplate;
 
     public RestClient() {
