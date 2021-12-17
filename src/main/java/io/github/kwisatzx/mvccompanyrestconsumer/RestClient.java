@@ -1,6 +1,5 @@
 package io.github.kwisatzx.mvccompanyrestconsumer;
 
-import io.github.kwisatzx.mvccompanyrestconsumer.model.Employee;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -19,18 +18,18 @@ public class RestClient {
         restTemplate = new RestTemplateBuilder().build();
     }
 
-    public List<Employee> getEmployeeList() {
-        ResponseEntity<List<Employee>> response = restTemplate.exchange(URL_ROOT + "/employees",
+    public <T> List<T> getList(Class<T> elementClass, String listUrl) {
+        ResponseEntity<List<T>> response = restTemplate.exchange(URL_ROOT + listUrl,
                                                                         HttpMethod.GET, null,
                                                                         new ParameterizedTypeReference<>() {});
         return response.getBody();
     }
 
-    public Employee getEmployee(Long empId) {
-        return restTemplate.getForObject(URL_ROOT + "/employees/" + empId, Employee.class);
+    public <T> T getObject(Class<T> clazz, String url) {
+        return restTemplate.getForObject(URL_ROOT + url, clazz);
     }
 
-    public void deleteEmployee(Long empId) {
-        restTemplate.exchange(URL_ROOT + "/employees/" + empId, HttpMethod.DELETE, null, Object.class);
+    public void deleteObject(String url) {
+        restTemplate.exchange(URL_ROOT + url, HttpMethod.DELETE, null, Object.class);
     }
 }
